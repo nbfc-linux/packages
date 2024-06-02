@@ -1,2 +1,3 @@
-# packages
-Repository for packages (DEB, RPM)
+packages
+========
+This repository contains packages for nbfc-linux.
