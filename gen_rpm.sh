@@ -4,6 +4,11 @@ unset CDPATH
 set -u +o histexpand
 set -e
 
+DESCRPTION='NoteBook Fan Control ported to Linux'
+MAINTAINER='Benjamin Abendroth <braph93@gmx.de>'
+LICENSE='GPL-3.0'
+URL='https://github.com/nbfc-linux/nbfc-linux'
+
 [[ -e 'nbfc-linux' ]] || \
   git clone https://github.com/nbfc-linux/nbfc-linux
 
@@ -16,5 +21,14 @@ rm -rf build
 mkdir build
 make DESTDIR=build install
 cd build
-fpm -s dir -t rpm -n nbfc-linux -v $VERSION *
+
+fpm \
+  -v $VERSION \
+  -m "$MAINTAINER" \
+  -n nbfc-linux \
+  --license "$LICENSE" \
+  --url "$URL" \
+  --description "$DESCRPTION" \
+  -s dir -t rpm *
+
 mv *.rpm ../..
